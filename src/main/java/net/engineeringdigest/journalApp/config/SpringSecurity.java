@@ -19,10 +19,10 @@ public class SpringSecurity {
 
     @Autowired
     private UserDetailsServiceImpl userDetailService;
-    
+
     //determines which end points to give access and which to not
     @Bean
-    public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
+    SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http
             .authorizeHttpRequests(authorizeRequests ->authorizeRequests
                     .requestMatchers("/journal/**","/users**").authenticated()
@@ -33,11 +33,11 @@ public class SpringSecurity {
             http.csrf(csrf -> csrf.disable());
 
         return http.build();
-    } 
+    }
 
     //it helps to authanticate users , Also integrate UserDetailsServiceImpl
     @Bean
-    public AuthenticationManager authenticationManager(HttpSecurity http) throws Exception {
+    AuthenticationManager authenticationManager(HttpSecurity http) throws Exception {
 
         AuthenticationManagerBuilder authenticationManagerBuilder = 
             http.getSharedObject(AuthenticationManagerBuilder.class);
@@ -50,7 +50,7 @@ public class SpringSecurity {
 
     // this used for password encoding
     @Bean
-    protected PasswordEncoder passwordEncoder() {
+    PasswordEncoder passwordEncoder() {
         return new BCryptPasswordEncoder();  // For encoding passwords
     }
 }

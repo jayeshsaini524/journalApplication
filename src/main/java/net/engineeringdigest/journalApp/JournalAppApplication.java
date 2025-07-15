@@ -17,12 +17,9 @@ public class JournalAppApplication {
 		SpringApplication.run(JournalAppApplication.class, args);
 	}
 
-	@Bean
-	public PlatformTransactionManager add(MongoDatabaseFactory dbFactory) {
+    @Bean
+    PlatformTransactionManager add(MongoDatabaseFactory dbFactory) {
 		return new MongoTransactionManager(dbFactory);
 	}
 
 }
-
-// 5gC8EUQG866jmPTE
-//mongodb+srv://jayeshsaini526:5gC8EUQG866jmPTE@cluster0.kthfr.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0
